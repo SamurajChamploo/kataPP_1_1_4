@@ -19,9 +19,9 @@ public class Util {
     private final static String PASSWORD = "postgresql";
     private final static String DRIVER = "org.postgresql.Driver";
     private final static String DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
-    private static SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
-    private Util() {}
+    public Util() {}
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -33,7 +33,7 @@ public class Util {
         return connection;
     }
 
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
