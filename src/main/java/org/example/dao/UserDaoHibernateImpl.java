@@ -19,36 +19,27 @@ public class UserDaoHibernateImpl implements UserDao {
             "lastName VARCHAR(50), " +
             "age SMALLINT)";
 
-    public UserDaoHibernateImpl() {
-    }
-
     @Override
     public void createUsersTable() {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.createNativeQuery(SQL_CREATE_USERS_TABLE).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
         }
     }
 
     @Override
     public void dropUsersTable() {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.createNativeQuery(SQL_DROP_USERS_TABLE).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
         }
     }
 
@@ -94,16 +85,13 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        Transaction transaction = null;
+        Transaction transaction;
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
             session.createNativeQuery(CLEAN_USERS_TABLE).executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            if (transaction != null) {
-                transaction.rollback();
-            }
         }
     }
 }
